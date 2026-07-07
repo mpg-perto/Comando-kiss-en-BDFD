@@ -4,18 +4,6 @@ Sistema de comando `!kiss @usuario` para BDFD, con CV2, GIFs de la API de nekos.
 
 ---
 
-## 📁 Estructura del proyecto
-
-```
-Assents/         → capturas de pantalla reales usadas en este README
-Codigos/
-  !kiss.md       → código del comando !kiss (bloque bash)
-  $onInteraction.md → código del callback de botones (bloque bash)
-README.md        → este archivo
-```
-
----
-
 ## 💋 Flujo 1 — Enviar el beso (`!kiss @usuario`)
 
 El comando valida que se haya mencionado a alguien, que no sea el propio autor, y que no sea un bot. Si todo es correcto, llama a `https://nekos.best/api/v2/kiss`, arma un contenedor CV2 con el gif, el nombre del anime (extraído del JSON, nunca inventado) y dos botones.
