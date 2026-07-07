@@ -34,31 +34,8 @@ Código completo: [`Codigos/$onInteraction.md`](Codigos/$onInteraction.md)
 
 ---
 
-## ⚠️ Limitaciones documentadas (verificadas contra la documentación oficial)
-
-1. **Components V2 es una función "nightly" (beta)** de BDFD, no estable — confirmado porque las funciones CV2 (`$addContainer`, `$addButtonCV2`, etc.) solo aparecen en el changelog *nightly* de la wiki, no en el estable. Tu bot necesita el canal Nightly activado.
-2. **La API `api.nekos.best/v3/...` no existe.** Solo hay v2 mantenida (confirmado en `docs.nekos.best`). Se usó `https://nekos.best/api/v2/kiss` y `.../slap`.
-3. **CV2 no tiene "footer" nativo.** Se simula con `$addTextDisplay` usando el prefijo de texto pequeño de Discord (`-# `).
-4. **`$elseif[]` requiere BDScript 2.**
-5. **`$ephemeral`** está documentado solo para respuestas de slash command; no hay confirmación oficial de que aplique igual dentro de `$onInteraction` — probado empíricamente en este proyecto.
-6. El sistema usa un `$onInteraction` genérico (sin ID fijo) porque el ID del botón es dinámico (incluye el ID del usuario objetivo). Si tu bot ya tiene otro sistema con `$onInteraction`, **debes fusionar el código en el mismo bloque**, con tus propios prefijos únicos, para evitar interferencias (esto se detectó y corrigió durante las pruebas: un sistema `!snake` externo reaccionaba a los botones de `!kiss` porque no filtraba por su propio prefijo).
-
----
-
-## 🧪 Historial de pruebas reales (resumen)
-
-Durante el desarrollo se detectaron y corrigieron, en orden:
-- `\n` literal en los textos (BDFD no interpreta el escape `\n`; se sustituyó por saltos de línea reales).
-- Interferencia con un `$onInteraction` externo (`!snake`) por falta de filtro de prefijo propio.
-- El botón se quedaba en estado de carga (`...`) porque `$channelSendMessage` fallaba al recibir texto vacío.
-- Los intentos de forzar un mensaje **nuevo** (`$channelSendMessage`, `$reply`) no lograron adjuntar el contenedor CV2 — solo se adjuntaba a la actualización implícita del mensaje original.
-- **Solución final:** aceptar el comportamiento real de BDFD (actualiza el mensaje original) y reconstruir el contenedor completo con el resumen arriba y el resultado abajo, eliminando la fila de botones al reconstruir.
-
----
-
 ## Instalación
 
-1. Activa el canal **Nightly** de BDFD.
-2. Crea el comando `!kiss` en **BDScript 2** con el código de [`Codigos/!kiss.md`](Codigos/!kiss.md).
-3. Crea (o fusiona con uno existente) el callback `$onInteraction` con el código de [`Codigos/$onInteraction.md`](Codigos/$onInteraction.md).
-4. Prueba los 3 mensajes de error, y luego ambos botones con el usuario correcto y con otro usuario distinto.
+1. Crea el comando `!kiss` en **BDFD** con el código de [`Codigos/!kiss.md`](Codigos/!kiss.md).
+2. Crea (o fusiona con uno existente) el callback `$onInteraction` con el código de [`Codigos/$onInteraction.md`](Codigos/$onInteraction.md).
+2. Prueba los 3 mensajes de error, y luego ambos botones con el usuario correcto y con otro usuario distinto.
