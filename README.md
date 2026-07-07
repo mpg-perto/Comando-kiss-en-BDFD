@@ -1,6 +1,6 @@
 # Sistema `!kiss` estilo Nekotina — BDFD + Components V2
 
-Sistema de comando `!kiss @usuario` para BDFD, con embed CV2, GIFs de la API de nekos.best, y botones de "Corresponder ❤️" / "Rechazar ❌" que solo puede pulsar el usuario mencionado.
+Sistema de comando `!kiss @usuario` para BDFD, con CV2, GIFs de la API de nekos.best, y botones de "Corresponder ❤️" / "Rechazar ❌" que solo puede pulsar el usuario mencionado.
 
 ---
 
