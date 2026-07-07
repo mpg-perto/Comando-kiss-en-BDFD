@@ -1,8 +1,7 @@
 # Comando `!kiss`
 
-```bash
+```rb
 $nomention
-$c[=== SISTEMA KISS – VALIDACIONES ===]
 $if[$mentioned[1]==]
 $addContainer[kissErr;#e74c3c]
 $addTextDisplay[## ❌ Beso fallido
@@ -35,5 +34,3 @@ $addButtonCV2[kissReject-$mentioned[1]-$authorID;❌ Rechazar;danger;no;;kissRow
 $endif
 $endif
 ```
-
-**Nota sobre el ID de los botones:** el formato es `kissAccept-<targetID>-<initiatorID>` / `kissReject-<targetID>-<initiatorID>`. Esto permite, en el `$onInteraction`, verificar quién puede pulsar (comparando `<targetID>` con el ID de quien pulsa) y también recuperar quién iba a besar a quién, sin depender de variables globales (`$setVar`) que podrían chocar si dos `!kiss` ocurren a la vez.
